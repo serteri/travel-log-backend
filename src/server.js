@@ -28,7 +28,7 @@ app.use(helmet.contentSecurityPolicy({
 const cors = require('cors');
 var corsOptions = {
     origin: ["http://localhost:5000", "https://loquacious-hamster-f8c0c5.netlify.app"],
-    credentials: true,
+    
     optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
