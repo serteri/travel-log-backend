@@ -1,5 +1,5 @@
-var {app, PORT,HOST} = require('./server');
-app.listen(PORT,HOST, () => {
+var {app, PORT} = require('./server');
+app.listen(PORT, () => {
     console.log(`
     ExpressJS Blog API is now running!
 
