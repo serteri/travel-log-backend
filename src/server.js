@@ -63,11 +63,11 @@ databaseConnector(databaseURL).then(() => {
     `);
 });
 
-const rolesController = require("../controllers/RoleRoutes");
+const rolesController = require("./controllers/RoleRoutes");
 app.use("/", rolesController);
-const usersController = require("../controllers/UserRoutes");
+const usersController = require("./controllers/UserRoutes");
 app.use("/", usersController);
-const postsController = require("../controllers/PostRoutes");
+const postsController = require("./controllers/PostRoutes");
 app.use("/", postsController);
 // Return a bunch of useful details from the database connection
 // Dig into each property here:
