@@ -20,7 +20,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "NODE_ENV=development nodemon src/index.js"
+    "start-dev": "CHOKIDAR_USEPOLLING=true NODE_ENV=development nodemon src/index.js",
+    "start-prod":"NODE_ENV=production node src/index.js"
   },
   "eslintConfig": {
     "extends": [
