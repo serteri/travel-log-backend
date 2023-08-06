@@ -73,7 +73,7 @@ router.get('/', async (request, response) => {
 router.get('/posts/:userID', async (request, response) => {
     let postsByAuthor = await getPostsByAuthor(request.params.userID);
 
-    response.json({
+    response.send({
         postsCount: postsByAuthor.length,
         postsArray: postsByAuthor
     });
