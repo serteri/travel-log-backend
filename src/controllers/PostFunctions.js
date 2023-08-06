@@ -7,16 +7,12 @@ async function getAllPosts(){
 
 async function getPostById(postID){
     // Check if the userID is a valid MongoDB ObjectID
-    if (!mongoose.Types.ObjectId.isValid(userID)) {
-        return res.status(400).json({ error: 'Invalid userID' });
-    }
-
     return await PostTravel.findById(postID).exec();
 }
 
 async function getPostsByAuthor(userID){
-    const authorObjectId = mongoose.Types.ObjectId(userID)
-    return await PostTravel.find({ author: authorObjectId }).populate('author').exec();
+    // const authorObjectId = mongoose.Types.ObjectId(userID)
+    return await PostTravel.find({ author: userID }).exec();
 
 }
 
