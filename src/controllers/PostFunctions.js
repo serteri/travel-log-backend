@@ -1,5 +1,5 @@
 const {PostTravel} = require('../models/PostTravel');
-
+const mongoose = require("mongoose");
 // Model.find({}) returns all documents in a collection.
 async function getAllPosts(){
     return await PostTravel.find({}).exec();
@@ -10,7 +10,9 @@ async function getPostById(postID){
 }
 
 async function getPostsByAuthor(userID){
-    return await PostTravel.find({author: userID}).exec();
+    const authorObjectId = mongoose.Types.ObjectId(userID)
+    return await PostTravel.find({ author: authorObjectId }).populate('author').exec();
+
 }
 
 async function createPost(postDetails){
