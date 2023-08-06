@@ -70,8 +70,8 @@ router.get('/', async (request, response) => {
 });
 
 // Show posts by specific user
-router.get('/author/:authorID', async (request, response) => {
-    let postsByAuthor = await getPostsByAuthor(request.params.authorID);
+router.get('/posts/:userID', async (request, response) => {
+    let postsByAuthor = await getPostsByAuthor(request.params.userID);
 
     response.json({
         postsCount: postsByAuthor.length,

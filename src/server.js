@@ -26,9 +26,9 @@ app.use(helmet.contentSecurityPolicy({
 // that should interact with this API should be listed in the
 // array of origins for CORS configuration.
 const cors = require('cors');
-var corsOptions = {
+const corsOptions = {
     origin: ["http://localhost:5000", "https://sparkly-sable-15a2e7.netlify.app"],
-   
+   credentials: true,
     optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
