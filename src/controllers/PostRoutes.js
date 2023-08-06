@@ -85,8 +85,18 @@ router.get('/:postID', async (request, response) => {
 });
 
 // Create a post
-router.post('/post', async (request, response) => {
-    response.json(await createPost(request.body.postDetails));
+router.post('/user/userID/post', async (request, response) => {
+    let userid = request.params.id;
+    let postDetails = {
+        location: request.body.location,
+
+        date: request.body.date,
+        cost: request.body.cost,
+        post: request.body.post,
+        author:userid
+
+    }
+    response.json(await createPost(postDetails));
 });
 
 // Update a specific post
