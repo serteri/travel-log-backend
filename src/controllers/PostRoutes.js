@@ -1,5 +1,6 @@
 // Import Express
 const express = require('express');
+const mongoose = require('mongoose');
 // Create an instance of an Express Router
 const router = express.Router();
 const jwt = require('jsonwebtoken');
@@ -71,12 +72,22 @@ router.get('/', async (request, response) => {
 
 // Show posts by specific user
 router.get('/posts/:userID', async (request, response) => {
-    let postsByAuthor = await getPostsByAuthor(request.params.userID);
 
-    response.send({
+    const userID = request.params.userID;
+
+
+    // Check if the userID is a valid MongoDB ObjectID
+    if (!mongoose.Types.ObjectId.isValid(userID)) {
+        return response.status(400).json({ error: 'Invalid userID' });
+    }
+    try{ let postsByAuthor = await getPostsByAuthor(userID);
+    response.json({
         postsCount: postsByAuthor.length,
         postsArray: postsByAuthor
-    });
+    }) }
+catch (error) {
+    response.status(500).json({ error: 'Error retrieving posts' });
+}
 });
 
 // Show specific post by ID

@@ -6,6 +6,11 @@ async function getAllPosts(){
 }
 
 async function getPostById(postID){
+    // Check if the userID is a valid MongoDB ObjectID
+    if (!mongoose.Types.ObjectId.isValid(userID)) {
+        return res.status(400).json({ error: 'Invalid userID' });
+    }
+
     return await PostTravel.findById(postID).exec();
 }
 
