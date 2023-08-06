@@ -74,6 +74,7 @@ router.get('/', async (request, response) => {
 router.get('/posts/:userID', async (request, response) => {
 
     const userID = request.params.userID;
+    console.log('Received userID:', userID);
     // Check if the userID is a valid MongoDB ObjectID
     if (!mongoose.Types.ObjectId.isValid(userID)) {
         console.error('Invalid userID:', userID);
