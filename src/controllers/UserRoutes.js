@@ -107,7 +107,7 @@ router.post('/log-in', async (request, response) => {
     let userName = targetUser.firstName;
     
     let id = targetUser.id;
-    console.log( await validateHashedData(request.body.password, targetUser.password))
+
 
     if (await validateHashedData(request.body.password, targetUser.password)){
         let encryptedUserJwt = await generateUserJWT(
@@ -117,7 +117,7 @@ router.post('/log-in', async (request, response) => {
                 password: targetUser.password
             }
         );
-
+        console.log(encryptedUserJwt);
         response.send({id:id , firstName:userName});
 
 
