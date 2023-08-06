@@ -12,7 +12,7 @@ async function getPostById(postID){
 
 async function getPostsByAuthor(userID){
     try {
-        const authorObjectId = mongoose.Types.ObjectId(userID);
+        const authorObjectId = new mongoose.Types.ObjectId(userID);
 
 
         const posts = await PostTravel.find({ author: authorObjectId }).exec();
