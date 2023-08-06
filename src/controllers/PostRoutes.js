@@ -99,7 +99,9 @@ router.get('/:postID', async (request, response) => {
 // Create a post
 router.post('/user/userID/post', async (request, response) => {
     let userid = request.params.userID;
+    console.log(userid)
     const authorObjectId = new mongoose.Types.ObjectId(userid);
+    console.log(authorObjectId)
     let postDetails = {
         location: request.body.location,
 
