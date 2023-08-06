@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const { Role } = require('../models/RoleModel');
-const { Post } = require('../models/PostTravel');
+const { PostTravel } = require('../models/PostTravel');
 const { verifyUserJWT, decryptString } = require('./UserFunctions');
 const { User } = require('../models/UserModel');
 
@@ -52,7 +52,7 @@ const verifyJwtRole = async (request, response, next) => {
 // Different middleware can be made for
 // different roles, just like this.
 const onlyAllowAdminOrAuthor = async (request, response, next) => {
-    let postAuthor = await Post.findById(request.params.postID).exec().then((data) => {return data.author});
+    let postAuthor = await PostTravel.findById(request.params.postID).exec().then((data) => {return data.author});
 
     if (request.headers.userRole == "admin" || postAuthor == request.headers.userID){
         next();

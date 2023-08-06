@@ -7,8 +7,8 @@ const UserSchema = new mongoose.Schema({
     lastName: {type: String, required:true},
     address: {type: String, required:true},
     phoneNumber:{type: String, required:true},
-    role: {type: mongoose.Schema.Types.ObjectId, ref: 'Role'},
-    post:{type: mongoose.Schema.Types.ObjectId, ref: 'PostTravel'}
+    role: {type: mongoose.Types.ObjectId, ref: 'Role'},
+    post:{type: mongoose.Types.ObjectId, ref: 'PostTravel'}
 
 });
 
