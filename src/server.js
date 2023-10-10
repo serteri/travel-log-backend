@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 // If no process.env.X is found, assign a default value instead.
 const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 9000
 
 // Configure some basic Helmet settings on the server instance.
 const helmet = require('helmet');
@@ -27,7 +27,7 @@ app.use(helmet.contentSecurityPolicy({
 // array of origins for CORS configuration.
 const cors = require('cors');
 const corsOptions = {
-    origin: ["http://localhost:8000", "https://sparkly-sable-15a2e7.netlify.app"],
+    origin: ["http://localhost:3000", "https://sparkly-sable-15a2e7.netlify.app"],
    credentials: true,
     optionsSuccessStatus: 200
 }

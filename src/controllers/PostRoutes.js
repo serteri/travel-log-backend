@@ -74,14 +74,16 @@ router.get('/', async (request, response) => {
 router.get('/posts/:userID', async (request, response) => {
 
     const userID = request.params.userID;
+
     const authorObjectId = new mongoose.Types.ObjectId(userID);
-    console.log(authorObjectId)
+
     // Check if the userID is a valid MongoDB ObjectID
     if (!mongoose.Types.ObjectId.isValid(userID)) {
         console.error('Invalid userID:', userID);
         return response.status(400).json({ error: 'Invalid userID' });
     }
     try{ let postsByAuthor = await getPostsByAuthor(userID);
+
     response.json({
         postsCount: postsByAuthor.length,
         postsArray: postsByAuthor
@@ -99,9 +101,10 @@ router.get('/:postID', async (request, response) => {
 // Create a post
 router.post('/user/:id/post', async (request, response) => {
     let userid = request.params.id;
-    console.log(userid)
+
+
     const authorObjectId = new mongoose.Types.ObjectId(userid);
-    console.log(authorObjectId)
+
     let postDetails = {
         location: request.body.location,
 
@@ -111,6 +114,7 @@ router.post('/user/:id/post', async (request, response) => {
         author:authorObjectId
 
     }
+    // console.log(postDetails);
     response.json(await createPost(postDetails));
 });
 

@@ -91,8 +91,10 @@ router.post('/register-us',uniqueEmailCheck,handleErrors, async (request, respon
         phoneNumber: request.body.phoneNumber,
         role :"user"
     }
+
     let newUserDoc = await createUser(userDetails);
 if (newUserDoc){
+
     response.send('Message sent Thank you');
 }else{
     response.send('Failed to register')
@@ -103,27 +105,34 @@ response.end()
 
 // Sign-in an existing user
 router.post('/log-in', async (request, response) => {
-    let targetUser = await User.findOne({email: request.body.email}).exec();
-    let userName = targetUser.firstName;
-    
-    let id = targetUser.id;
+     let targetUser = await User.findOne({email: request.body.email}).exec();
+
+     if (targetUser){
+         let userName = targetUser.firstName;
+
+         let id = targetUser.id;
 
 
-    if (await validateHashedData(request.body.password, targetUser.password)){
-        let encryptedUserJwt = await generateUserJWT(
-            {
-                userID: targetUser.id,
-                email: targetUser.email,
-                password: targetUser.password
-            }
-        );
-        console.log(encryptedUserJwt);
-        response.send({id:id , firstName:userName});
+         if (await validateHashedData(request.body.password, targetUser.password)){
+             let encryptedUserJwt = await generateUserJWT(
+                 {
+                     userID: targetUser.id,
+                     email: targetUser.email,
+                     password: targetUser.password
+                 }
+             );
+
+             response.send({id:id , firstName:userName});
 
 
-    } else {
-        response.status(400).json({message:"Invalid user details provided."});
-    }
+         } else {
+             response.status(300).json({message:"Invalid user details provided."});
+         }
+
+     }else{
+         response.status(500).json({message:"No user found!"});
+     }
+
 
 });
 

@@ -16,6 +16,7 @@ async function getPostsByAuthor(userID){
 
 
         const posts = await PostTravel.find({ author: authorObjectId }).exec();
+
         return posts;
     } catch (error) {
         throw error;
@@ -24,6 +25,7 @@ async function getPostsByAuthor(userID){
 }
 
 async function createPost(postDetails){
+
     return await PostTravel.create(postDetails);
 }
 
